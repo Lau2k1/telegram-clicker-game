@@ -1,10 +1,11 @@
 // src/components/GameScreen.tsx
-import { useGameStore } from '../store/gameStore';
-import './GameScreen.css';
+import { useGameStore } from "../store/gameStore";
+import { ClickerArea } from "./ClickerArea";
+import "./GameScreen.css";
 
 export const GameScreen: React.FC = () => {
   const { gold, goldPerClick, totalClicks } = useGameStore();
-  
+
   const playerLevel = Math.floor(totalClicks / 100) + 1;
   const levelProgress = ((totalClicks % 100) / 100) * 100;
 
@@ -15,7 +16,6 @@ export const GameScreen: React.FC = () => {
         <h1 className="game-title">⚔️ Adventure Clicker</h1>
         <p className="game-subtitle">Собери сокровища и стань легендой!</p>
       </header>
-      
       {/* Ресурсы */}
       <div className="resources-panel">
         <div className="resource-item">
@@ -25,7 +25,7 @@ export const GameScreen: React.FC = () => {
             <div className="resource-name">Золото</div>
           </div>
         </div>
-        
+
         <div className="resource-item">
           <span className="resource-icon">⭐</span>
           <div className="resource-info">
@@ -34,7 +34,6 @@ export const GameScreen: React.FC = () => {
           </div>
         </div>
       </div>
-      
       {/* Прогресс-бар уровня */}
       <div className="level-progress">
         <div className="progress-info">
@@ -42,26 +41,16 @@ export const GameScreen: React.FC = () => {
           <span>{100 - (totalClicks % 100)} кликов</span>
         </div>
         <div className="progress-bar-container">
-          <div 
-            className="progress-bar" 
-            style={{ width: `${levelProgress}%` }}
-          >
+          <div className="progress-bar" style={{ width: `${levelProgress}%` }}>
             <span className="progress-text">{Math.floor(levelProgress)}%</span>
           </div>
         </div>
       </div>
-      
       {/* Кликер */}
+      // В GameScreen.tsx внутри return
       <div className="clicker-container">
-        <div className="clicker-area">
-          <div className="clicker-title">ТАПАЙ ДЛЯ ЗОЛОТА!</div>
-          <div className="clicker-info">
-            Каждый клик: <span className="highlight">+{goldPerClick} золота</span>
-          </div>
-          <div className="clicker-hint">Нажимай быстро!</div>
-        </div>
+        <ClickerArea />
       </div>
-      
       {/* Быстрая статистика */}
       <div className="quick-stats">
         <div className="quick-stat">
@@ -72,7 +61,9 @@ export const GameScreen: React.FC = () => {
         <div className="quick-stat">
           <div className="quick-stat-icon">🏗️</div>
           <div className="quick-stat-value">
-            {useGameStore.getState().buildings.reduce((sum, b) => sum + b.owned, 0)}
+            {useGameStore
+              .getState()
+              .buildings.reduce((sum, b) => sum + b.owned, 0)}
           </div>
           <div className="quick-stat-label">Зданий</div>
         </div>

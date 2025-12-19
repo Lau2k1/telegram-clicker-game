@@ -4,17 +4,20 @@ import { useGameStore } from '../store/gameStore';
 import './ClickerArea.css';
 
 export const ClickerArea: React.FC = () => {
-  const { click, goldPerClick } = useGameStore();
+  const { goldPerClick, click } = useGameStore();
   const [isAnimating, setIsAnimating] = useState(false);
   const [clickPosition, setClickPosition] = useState({ x: 0, y: 0 });
 
   const handleClick = (e: React.MouseEvent) => {
+    if (!e.currentTarget) return;
+    
     const rect = e.currentTarget.getBoundingClientRect();
     setClickPosition({
       x: e.clientX - rect.left,
       y: e.clientY - rect.top,
     });
     
+    // Вызываем функцию клика из хранилища
     click();
     setIsAnimating(true);
   };
@@ -43,7 +46,7 @@ export const ClickerArea: React.FC = () => {
       
       {/* Основной контент */}
       <div className="clicker-content">
-        <div className="clicker-title">Тапай для золота!</div>
+        <div className="clicker-title">ТАПАЙ ДЛЯ ЗОЛОТА!</div>
         <div className="clicker-instruction">
           Каждый клик: <span className="highlight">+{goldPerClick} золота</span>
         </div>
