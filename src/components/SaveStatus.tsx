@@ -1,7 +1,7 @@
 // src/components/SaveStatus.tsx
 import { useState, useEffect } from 'react';
 import { useTelegramStore } from '../store/telegramStore';
-
+import './SaveStatus.css'
 
 export const SaveStatus: React.FC = () => {
   const store = useTelegramStore();
