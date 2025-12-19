@@ -2,7 +2,7 @@
 import { useEffect } from 'react';
 import { GameScreen } from './components/GameScreen';
 import { initTelegram } from './lib/telegram';
-import './App.css';
+
 
 function App() {
   useEffect(() => {

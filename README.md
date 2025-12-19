@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
@@ -71,3 +72,7 @@ export default defineConfig([
   },
 ])
 ```
+=======
+# telegram-clicker-game
+Telegram Mini App - Adventure Clicker Game
+>>>>>>> a15fd4a49fb16f767ae498328289ff0fa19e0bb2

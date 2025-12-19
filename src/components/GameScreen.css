@@ -1,0 +1,26 @@
+/* src/components/GameScreen.css */
+.game-screen {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.game-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .game-columns {
+    grid-template-columns: 1fr;
+  }
+}
+
+.left-column,
+.right-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
