@@ -203,3 +203,20 @@
     height: 250px;
   }
 }
+
+.game-screen {
+  min-height: 100vh;
+  padding: 20px 20px 100px; 
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  color: white;
+  position: relative;
+}
+
+/* Добавляем безопасную зону для кнопки */
+@media (max-width: 768px) {
+  .game-screen {
+    padding-bottom: 120px; /* Ещё больше на мобильных */
+  }
+}

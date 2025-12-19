@@ -4,7 +4,7 @@ import { ClickerArea } from "./ClickerArea";
 import "./GameScreen.css";
 
 export const GameScreen: React.FC = () => {
-  const { gold, goldPerClick, totalClicks } = useGameStore();
+  const { gold, totalClicks } = useGameStore();
 
   const playerLevel = Math.floor(totalClicks / 100) + 1;
   const levelProgress = ((totalClicks % 100) / 100) * 100;
@@ -47,7 +47,7 @@ export const GameScreen: React.FC = () => {
         </div>
       </div>
       {/* Кликер */}
-      // В GameScreen.tsx внутри return
+
       <div className="clicker-container">
         <ClickerArea />
       </div>

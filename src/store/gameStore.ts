@@ -141,13 +141,49 @@ export const useGameStore = create<GameState>()(
       calculateOfflineEarnings: () => {
         const state = get();
         const now = Date.now();
+
+        // 1. Проверяем что время корректное
+        if (state.lastUpdate > now) {
+          console.warn("⚠️ Время сохранения в будущем");
+          return 0;
+        }
+
+        // 2. Считаем сколько прошло времени (в секундах)
         const secondsPassed = (now - state.lastUpdate) / 1000;
 
+        // 3. Если игра была открыта меньше 10 секунд назад - НЕ начисляем оффлайн доход
+        // (значит игрок только что закрыл игру, это не "оффлайн")
+        if (secondsPassed < 10) {
+          console.log(
+            "🔄 Игра была открыта недавно, оффлайн доход не начисляем"
+          );
+          return 0;
+        }
+
+        // 4. Ограничиваем максимальное время оффлайн-дохода
+        const MAX_OFFLINE_SECONDS = 60 * 60; // Максимум 1 час оффлайн-дохода
+        const offlineSeconds = Math.min(secondsPassed, MAX_OFFLINE_SECONDS);
+
+        // 5. Рассчитываем доход за это время
         const totalPassiveIncome = state.buildings.reduce((sum, building) => {
           return sum + building.baseIncome * building.level * building.owned;
         }, 0);
 
-        return totalPassiveIncome * secondsPassed;
+        const calculatedIncome = totalPassiveIncome * offlineSeconds;
+
+        // 6. Лимит на разовое начисление (чтобы не сломать баланс)
+        const MAX_SINGLE_INCOME = 1000; // Не больше 1000 монет за раз
+        const finalIncome = Math.min(calculatedIncome, MAX_SINGLE_INCOME);
+
+        console.log(
+          `💰 Оффлайн доход: ${offlineSeconds.toFixed(
+            0
+          )}сек × ${totalPassiveIncome.toFixed(2)}/сек = ${finalIncome.toFixed(
+            2
+          )} золота`
+        );
+
+        return finalIncome;
       },
 
       reset: () => {
@@ -162,11 +198,22 @@ export const useGameStore = create<GameState>()(
     }),
     {
       name: "adventure-game-save",
+
+      
       onRehydrateStorage: () => (state) => {
         if (state) {
           // Рассчитываем оффлайн доход при загрузке
           const offlineEarnings = state.calculateOfflineEarnings();
-          state.addGold(offlineEarnings);
+          if (offlineEarnings > 0) {
+            console.log(
+              `🎮 Загружена игра, начисляем оффлайн доход: ${offlineEarnings.toFixed(
+                2
+              )} золота`
+            );
+            state.addGold(offlineEarnings);
+          }
+
+          // Всегда обновляем время загрузки
           state.lastUpdate = Date.now();
 
           // Инициализируем Telegram
