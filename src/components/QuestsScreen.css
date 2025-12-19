@@ -1,0 +1,231 @@
+/* src/components/QuestsScreen.css */
+.quests-screen {
+  min-height: 100vh;
+  padding: 20px;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  color: white;
+}
+
+.quests-summary {
+  display: flex;
+  justify-content: space-around;
+  gap: 15px;
+  margin: 30px 0;
+  flex-wrap: wrap;
+}
+
+.summary-item {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  flex: 1;
+  min-width: 120px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.summary-label {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin-bottom: 8px;
+}
+
+.summary-value {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ffd700;
+}
+
+.quests-section {
+  margin-bottom: 40px;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #ffd700;
+  padding-bottom: 10px;
+  border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+}
+
+.empty-state {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 50px 30px;
+  text-align: center;
+  border: 2px dashed rgba(255, 255, 255, 0.2);
+}
+
+.empty-icon {
+  font-size: 4rem;
+  margin-bottom: 20px;
+  opacity: 0.7;
+}
+
+.empty-text {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.empty-subtext {
+  font-size: 1rem;
+  opacity: 0.7;
+}
+
+.quests-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.quest-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  padding: 25px;
+  border: 2px solid transparent;
+  transition: border-color 0.3s;
+}
+
+.quest-card.active {
+  border-left: 5px solid #667eea;
+}
+
+.quest-card.completed {
+  border-left: 5px solid #4CAF50;
+}
+
+.quest-card.claimed {
+  border-left: 5px solid #9C27B0;
+  opacity: 0.7;
+}
+
+.quest-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.quest-title {
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.quest-reward {
+  background: rgba(255, 215, 0, 0.1);
+  padding: 8px 16px;
+  border-radius: 20px;
+  color: #ffd700;
+  font-weight: bold;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.quest-description {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.quest-progress {
+  margin-top: 15px;
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.progress-bar-container {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.claim-button {
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  border: none;
+  border-radius: 12px;
+  padding: 12px 24px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.claim-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+}
+
+.quest-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 15px;
+  padding: 10px 15px;
+  background: rgba(76, 175, 80, 0.1);
+  border-radius: 10px;
+  border: 1px solid rgba(76, 175, 80, 0.3);
+}
+
+.status-icon {
+  font-size: 1.2rem;
+}
+
+.status-text {
+  font-weight: bold;
+  color: #4CAF50;
+}
+
+.claimed-badge {
+  background: rgba(156, 39, 176, 0.1);
+  padding: 8px 16px;
+  border-radius: 20px;
+  color: #9C27B0;
+  font-weight: bold;
+  border: 1px solid rgba(156, 39, 176, 0.3);
+}
+
+.quest-reward-info {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.reward-amount {
+  color: #ffd700;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .quest-header {
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+  }
+  
+  .quest-title {
+    font-size: 1.2rem;
+  }
+  
+  .claim-button {
+    width: 100%;
+  }
+}

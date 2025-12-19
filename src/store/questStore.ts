@@ -68,6 +68,9 @@ const INITIAL_QUESTS: Quest[] = [
   },
 ];
 
+
+
+
 export const useQuestStore = create<QuestStore>((set) => ({
   quests: INITIAL_QUESTS,
   activeQuests: INITIAL_QUESTS.filter(q => !q.completed),

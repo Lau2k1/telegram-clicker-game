@@ -35,6 +35,8 @@ const INITIAL_BUILDINGS: Building[] = [
   { id: 'castle', name: '🏰 Замок', level: 1, baseCost: 3000, baseIncome: 30, owned: 0 },
 ];
 
+
+
 export const useGameStore = create<GameState>()(
   persist(
     (set, get) => ({
